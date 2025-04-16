@@ -2,7 +2,7 @@
     {
         "id": "14d6892b9a074587",
         "type": "tab",
-        "label": "Stellio NGSI-LD Flow",
+        "label": "DWD Stellio NGSI-LD",
         "disabled": false,
         "info": "",
         "env": []
@@ -18,7 +18,7 @@
     {
         "id": "0aabdc139449829a",
         "type": "tab",
-        "label": "Helpers",
+        "label": "Instance Helpers",
         "disabled": false,
         "info": "",
         "env": []
