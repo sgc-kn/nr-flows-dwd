@@ -1,0 +1,12 @@
+{
+    "name": "nr-flows-dwd",
+    "description": "https://github.com/sgc-kn/nr-flows-dwd",
+    "version": "0.0.1",
+    "dependencies": {},
+    "node-red": {
+        "settings": {
+            "flowFile": "flows.json",
+            "credentialsFile": "flows_cred.json"
+        }
+    }
+}
