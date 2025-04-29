@@ -10,7 +10,7 @@
     {
         "id": "c41b7248cee84bf3",
         "type": "tab",
-        "label": "Stellio Helper",
+        "label": "Stellio Setup",
         "disabled": false,
         "info": "",
         "env": []
@@ -18,7 +18,7 @@
     {
         "id": "0aabdc139449829a",
         "type": "tab",
-        "label": "Instance Helpers",
+        "label": "Environment",
         "disabled": false,
         "info": "",
         "env": []
@@ -163,24 +163,6 @@
         "y": 619,
         "w": 1252,
         "h": 242
-    },
-    {
-        "id": "bb5375a3b5952e59",
-        "type": "group",
-        "z": "0aabdc139449829a",
-        "name": "Read Environment Variables",
-        "style": {
-            "label": true,
-            "fill": "#e3f3d3"
-        },
-        "nodes": [
-            "c95c342945e8961a",
-            "ca7297eac42e638f"
-        ],
-        "x": 34,
-        "y": 39,
-        "w": 392,
-        "h": 82
     },
     {
         "id": "a387eae66b26066e",
@@ -1340,37 +1322,13 @@
         "wires": []
     },
     {
-        "id": "c95c342945e8961a",
-        "type": "debug",
-        "z": "0aabdc139449829a",
-        "g": "bb5375a3b5952e59",
-        "name": "env",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 330,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "ca7297eac42e638f",
+        "id": "0f4f987967cd5ee1",
         "type": "inject",
         "z": "0aabdc139449829a",
-        "g": "bb5375a3b5952e59",
-        "name": "read",
+        "name": "Name",
         "props": [
             {
                 "p": "payload"
-            },
-            {
-                "p": "payload.FIWARE_SERVICE",
-                "v": "FIWARE_SERVICE",
-                "vt": "env"
             }
         ],
         "repeat": "",
@@ -1378,14 +1336,237 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{}",
-        "payloadType": "json",
-        "x": 130,
-        "y": 80,
+        "payload": "DOMAIN",
+        "payloadType": "str",
+        "x": 110,
+        "y": 60,
         "wires": [
             [
-                "c95c342945e8961a"
+                "0993ad2062d69031"
             ]
         ]
+    },
+    {
+        "id": "0993ad2062d69031",
+        "type": "function",
+        "z": "0aabdc139449829a",
+        "name": "env.get",
+        "func": "msg.payload = env.get(msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 60,
+        "wires": [
+            [
+                "7fff2e2870ed2234"
+            ]
+        ]
+    },
+    {
+        "id": "7fff2e2870ed2234",
+        "type": "debug",
+        "z": "0aabdc139449829a",
+        "name": "DOMAIN",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 480,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "a7a0b924e88371c1",
+        "type": "inject",
+        "z": "0aabdc139449829a",
+        "name": "Name",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "STELLIO_API_URL",
+        "payloadType": "str",
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "ba6f6964b310b054"
+            ]
+        ]
+    },
+    {
+        "id": "ba6f6964b310b054",
+        "type": "function",
+        "z": "0aabdc139449829a",
+        "name": "env.get",
+        "func": "msg.payload = env.get(msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 140,
+        "wires": [
+            [
+                "5a1ed329cfd10f13"
+            ]
+        ]
+    },
+    {
+        "id": "5a1ed329cfd10f13",
+        "type": "debug",
+        "z": "0aabdc139449829a",
+        "name": "STELLIO_API_URL",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 520,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "4768ae2bab44024d",
+        "type": "inject",
+        "z": "0aabdc139449829a",
+        "name": "Name",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "QL_LD_API_URL",
+        "payloadType": "str",
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "101e94347691c7c7"
+            ]
+        ]
+    },
+    {
+        "id": "101e94347691c7c7",
+        "type": "function",
+        "z": "0aabdc139449829a",
+        "name": "env.get",
+        "func": "msg.payload = env.get(msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 220,
+        "wires": [
+            [
+                "a81cdee55b7c10ac"
+            ]
+        ]
+    },
+    {
+        "id": "a81cdee55b7c10ac",
+        "type": "debug",
+        "z": "0aabdc139449829a",
+        "name": "QL_LD_API_URL",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 510,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "d11fbb12a6196c0d",
+        "type": "inject",
+        "z": "0aabdc139449829a",
+        "name": "Name",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "FIWARE_SERVICE",
+        "payloadType": "str",
+        "x": 110,
+        "y": 300,
+        "wires": [
+            [
+                "57e35619f937b39d"
+            ]
+        ]
+    },
+    {
+        "id": "57e35619f937b39d",
+        "type": "function",
+        "z": "0aabdc139449829a",
+        "name": "env.get",
+        "func": "msg.payload = env.get(msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 300,
+        "wires": [
+            [
+                "f68b787bbae78b25"
+            ]
+        ]
+    },
+    {
+        "id": "f68b787bbae78b25",
+        "type": "debug",
+        "z": "0aabdc139449829a",
+        "name": "FIWARE_SERVICE",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 510,
+        "y": 300,
+        "wires": []
     }
 ]
