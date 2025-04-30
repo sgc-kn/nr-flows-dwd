@@ -87,13 +87,11 @@
             "e22b47130cab0aff",
             "922ae5c915dbfef5",
             "dd05473a52b6b668",
-            "c345fc4b7d75c548",
-            "b9cf21e32692ba9f",
-            "d2761ddb666dd807"
+            "c345fc4b7d75c548"
         ],
         "x": 54,
         "y": 139,
-        "w": 1292,
+        "w": 1252,
         "h": 242
     },
     {
@@ -159,13 +157,11 @@
             "43b88dd053b05891",
             "76e9a5ca014009e0",
             "e3a2b9122e39ce50",
-            "6ebaf929cb8dbb67",
-            "d5ed8f1c0db93461",
-            "300d380e5acaa002"
+            "6ebaf929cb8dbb67"
         ],
         "x": 54,
         "y": 619,
-        "w": 1272,
+        "w": 1252,
         "h": 242
     },
     {
@@ -510,7 +506,7 @@
         "id": "a4ac0ec765a3d716",
         "type": "function",
         "z": "14d6892b9a074587",
-        "name": "Create WeatherObserved datamodel",
+        "name": "Create WeatherForecast datamodel",
         "func": "msg.values = {}\n\nif('pressure' in msg.sensor) {\n    msg.values.atmosphericPressure = {\n        \"type\": \"Property\",\n        \"value\": msg.sensor.pressure,\n        \"observedAt\": new Date().toISOString()\n    }\n}\n\nif ('temperature' in msg.sensor && msg.sensor[\"temperature\"]) {\n    msg.values.temperature = {\n        \"type\": \"Property\",\n        \"value\": msg.sensor.temperature,\n        \"observedAt\": new Date().toISOString()\n    }\n}\n\nif ('windDirection' in msg.sensor && msg.sensor[\"windDirection\"]) {\n    msg.values.windDirection = {\n        \"type\": \"Property\",\n        \"value\": msg.sensor.windDirection,\n        \"observedAt\": new Date().toISOString()\n    }\n}\n\nif ('windSpeed' in msg.sensor && msg.sensor[\"windSpeed\"]) {\n    msg.values.windSpeed = {\n        \"type\": \"Property\",\n        \"value\": msg.sensor.windSpeed,\n        \"observedAt\": new Date().toISOString()\n    }\n}\n\nif ('timestamp' in msg.sensor && msg.sensor[\"timestamp\"]) {\n    msg.values.dateObserved = {\n        \"type\": \"Property\",\n        \"value\": new Date().toISOString()\n    }\n}\n\nif ('humidity' in msg.sensor && msg.sensor[\"humidity\"]) {\n    msg.values.relativeHumidity = {\n        \"type\": \"Property\",\n        \"value\": msg.sensor.humidity,\n        \"observedAt\": new Date().toISOString()\n    }\n}\n\nif ('precipitation_perc' in msg.sensor) {\n    msg.values.precipitationProbability = {\n        \"type\": \"Property\",\n        \"value\": msg.sensor.precipitation_perc,\n        \"observedAt\": new Date().toISOString()\n    }\n}\n\nmsg.payload = [{ ...msg.values,\n    ...{\n        \"id\": \"urn:ngsi-ld:WeatherForecast:DWD-Weather-FC1-\" + msg.sensor.id,\n        \"type\": \"WeatherForecast\",\n        \"@context\": [\n            `https://context.${ env.get(\"DOMAIN\") }/main-context.jsonld`\n            ]    \n        },\n        \"validFrom\": {\n            \"type\": \"Property\",\n            \"value\": {\n                \"@type\": \"DateTime\",\n                \"@value\": new Date(msg.sensor.timestamp).toISOString()\n            },\n            \"observedAt\": new Date().toISOString()\n    },\n}]\n\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -518,7 +514,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
+        "x": 580,
         "y": 580,
         "wires": [
             [
@@ -531,7 +527,7 @@
         "id": "dd97d2d8c0437f03",
         "type": "function",
         "z": "14d6892b9a074587",
-        "name": "Create WeatherObserved datamodel",
+        "name": "Create WeatherForecast datamodel",
         "func": "msg.values = {}\n\nif('pressure' in msg.sensor) {\n    msg.values.atmosphericPressure = {\n        \"type\": \"Property\",\n        \"value\": msg.sensor.pressure,\n        \"observedAt\": new Date().toISOString()\n    }\n}\n\nif ('temperature' in msg.sensor && msg.sensor[\"temperature\"]) {\n    msg.values.temperature = {\n        \"type\": \"Property\",\n        \"value\": msg.sensor.temperature,\n        \"observedAt\": new Date().toISOString()\n    }\n}\n\nif ('windDirection' in msg.sensor && msg.sensor[\"windDirection\"]) {\n    msg.values.windDirection = {\n        \"type\": \"Property\",\n        \"value\": msg.sensor.windDirection,\n        \"observedAt\": new Date().toISOString()\n    }\n}\n\nif ('windSpeed' in msg.sensor && msg.sensor[\"windSpeed\"]) {\n    msg.values.windSpeed = {\n        \"type\": \"Property\",\n        \"value\": msg.sensor.windSpeed,\n        \"observedAt\": new Date().toISOString()\n    }\n}\n\nif ('timestamp' in msg.sensor && msg.sensor[\"timestamp\"]) {\n    msg.values.dateObserved = {\n        \"type\": \"Property\",\n        \"value\": new Date().toISOString()\n    }\n}\n\nif ('humidity' in msg.sensor && msg.sensor[\"humidity\"]) {\n    msg.values.relativeHumidity = {\n        \"type\": \"Property\",\n        \"value\": msg.sensor.humidity,\n        \"observedAt\": new Date().toISOString()\n    }\n}\n\nif ('precipitation_perc' in msg.sensor) {\n    msg.values.precipitationProbability = {\n        \"type\": \"Property\",\n        \"value\": msg.sensor.precipitation_perc,\n        \"observedAt\": new Date().toISOString()\n    }\n}\n\nmsg.payload = [{ ...msg.values,\n    ...{\n        \"id\": \"urn:ngsi-ld:WeatherForecast:DWD-Weather-FC2-\" + msg.sensor.id,\n        \"type\": \"WeatherForecast\",\n        \"@context\": [\n            `https://context.${ env.get(\"DOMAIN\") }/main-context.jsonld`\n            ]    \n        },\n        \"validFrom\": {\n            \"type\": \"Property\",\n            \"value\": {\n                \"@type\": \"DateTime\",\n                \"@value\": new Date(msg.sensor.timestamp).toISOString()\n            },\n            \"observedAt\": new Date().toISOString()\n    },\n}]\n\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -539,7 +535,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
+        "x": 540,
         "y": 840,
         "wires": [
             [
@@ -611,18 +607,12 @@
         "z": "c41b7248cee84bf3",
         "g": "9bb62de76d856a4d",
         "name": "Go!",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
+        "props": [],
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
-        "payloadType": "date",
         "x": 150,
         "y": 80,
         "wires": [
@@ -637,7 +627,7 @@
         "z": "c41b7248cee84bf3",
         "g": "9bb62de76d856a4d",
         "name": "Setup GET Request",
-        "func": "msg.url = env.get(\"STELLIO_API_URL\") + \"/ngsi-ld/v1/subscriptions/?limit=100\";\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/ld+json';\nmsg.headers['NGSILD-Tenant'] = env.get(\"FIWARE_SERVICE\");\nmsg.payload = undefined;\nreturn msg;",
+        "func": "msg.url = env.get(\"STELLIO_API_URL\") + \"/ngsi-ld/v1/subscriptions/?limit=100\";\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/ld+json';\nmsg.headers['NGSILD-Tenant'] = env.get(\"FIWARE_SERVICE\");\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -648,8 +638,7 @@
         "y": 80,
         "wires": [
             [
-                "c75e48673f6853fc",
-                "fd550fcf054d0df1"
+                "c75e48673f6853fc"
             ]
         ]
     },
@@ -732,7 +721,7 @@
         "z": "c41b7248cee84bf3",
         "g": "6dd86781514dcb3a",
         "name": "Setup Request",
-        "func": "msg.url = env.get(\"STELLIO_API_URL\") + \"/ngsi-ld/v1/subscriptions/urn:ngsi-ld:Subscription:9b952583-0fb7-48e9-94d4-4c315623ae93\";\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/ld+json';\nmsg.headers['NGSILD-Tenant'] = env.get(\"FIWARE_SERVICE\");\nreturn msg;",
+        "func": "msg.url = env.get(\"STELLIO_API_URL\") + \"/ngsi-ld/v1/subscriptions/urn:ngsi-ld:Subscription:92009c4e-0a9a-4265-9bfb-435f5b117b54\";\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/ld+json';\nmsg.headers['NGSILD-Tenant'] = env.get(\"FIWARE_SERVICE\");\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1323,94 +1312,13 @@
         "wires": []
     },
     {
-        "id": "fd550fcf054d0df1",
-        "type": "debug",
-        "z": "c41b7248cee84bf3",
-        "name": "debug 89",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 600,
-        "y": 20,
-        "wires": []
-    },
-    {
-        "id": "5685f8736b810234",
+        "id": "7674a8c1fa3aecbc",
         "type": "comment",
         "z": "c41b7248cee84bf3",
-        "name": "does not work",
+        "name": "deletes one subscription, with hard-coded id",
         "info": "",
-        "x": 1010,
+        "x": 1130,
         "y": 440,
-        "wires": []
-    },
-    {
-        "id": "61a0fd5022769401",
-        "type": "comment",
-        "z": "c41b7248cee84bf3",
-        "name": "does not work",
-        "info": "",
-        "x": 1010,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "0e7f532481377f0a",
-        "type": "comment",
-        "z": "c41b7248cee84bf3",
-        "name": "does not work",
-        "info": "",
-        "x": 1010,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "b9cf21e32692ba9f",
-        "type": "comment",
-        "z": "c41b7248cee84bf3",
-        "g": "ac0b1ae0b3d6d0d5",
-        "name": "always false, because GET does not work",
-        "info": "",
-        "x": 1140,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "d2761ddb666dd807",
-        "type": "comment",
-        "z": "c41b7248cee84bf3",
-        "g": "ac0b1ae0b3d6d0d5",
-        "name": "error code shows success, but data does not find its way to QL",
-        "info": "",
-        "x": 1100,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "d5ed8f1c0db93461",
-        "type": "comment",
-        "z": "c41b7248cee84bf3",
-        "g": "db407cc6de5d87f9",
-        "name": "error code shows success, but data does not find its way to QL",
-        "info": "",
-        "x": 1080,
-        "y": 820,
-        "wires": []
-    },
-    {
-        "id": "300d380e5acaa002",
-        "type": "comment",
-        "z": "c41b7248cee84bf3",
-        "g": "db407cc6de5d87f9",
-        "name": "always false, because GET does not work",
-        "info": "",
-        "x": 1140,
-        "y": 700,
         "wires": []
     },
     {
