@@ -87,11 +87,13 @@
             "e22b47130cab0aff",
             "922ae5c915dbfef5",
             "dd05473a52b6b668",
-            "c345fc4b7d75c548"
+            "c345fc4b7d75c548",
+            "b9cf21e32692ba9f",
+            "d2761ddb666dd807"
         ],
         "x": 54,
         "y": 139,
-        "w": 1252,
+        "w": 1292,
         "h": 242
     },
     {
@@ -157,11 +159,13 @@
             "43b88dd053b05891",
             "76e9a5ca014009e0",
             "e3a2b9122e39ce50",
-            "6ebaf929cb8dbb67"
+            "6ebaf929cb8dbb67",
+            "d5ed8f1c0db93461",
+            "300d380e5acaa002"
         ],
         "x": 54,
         "y": 619,
-        "w": 1252,
+        "w": 1272,
         "h": 242
     },
     {
@@ -610,10 +614,6 @@
         "props": [
             {
                 "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
             }
         ],
         "repeat": "",
@@ -637,7 +637,7 @@
         "z": "c41b7248cee84bf3",
         "g": "9bb62de76d856a4d",
         "name": "Setup GET Request",
-        "func": "msg.url = env.get(\"STELLIO_API_URL\") + \"/ngsi-ld/v1/subscriptions/?limit=100\";\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/ld+json';\nmsg.headers['NGSILD-Tenant'] = env.get(\"FIWARE_SERVICE\");\nreturn msg;",
+        "func": "msg.url = env.get(\"STELLIO_API_URL\") + \"/ngsi-ld/v1/subscriptions/?limit=100\";\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/ld+json';\nmsg.headers['NGSILD-Tenant'] = env.get(\"FIWARE_SERVICE\");\nmsg.payload = undefined;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -648,7 +648,8 @@
         "y": 80,
         "wires": [
             [
-                "c75e48673f6853fc"
+                "c75e48673f6853fc",
+                "fd550fcf054d0df1"
             ]
         ]
     },
@@ -686,11 +687,11 @@
         "active": true,
         "tosidebar": true,
         "console": false,
-        "tostatus": false,
+        "tostatus": true,
         "complete": "true",
         "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
+        "statusVal": "'status: ' & msg.statusCode",
+        "statusType": "jsonata",
         "x": 820,
         "y": 80,
         "wires": []
@@ -780,11 +781,11 @@
         "active": true,
         "tosidebar": true,
         "console": false,
-        "tostatus": false,
+        "tostatus": true,
         "complete": "true",
         "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
+        "statusVal": "'status: ' & msg.statusCode",
+        "statusType": "jsonata",
         "x": 820,
         "y": 440,
         "wires": []
@@ -853,11 +854,11 @@
         "active": true,
         "tosidebar": true,
         "console": false,
-        "tostatus": false,
+        "tostatus": true,
         "complete": "true",
         "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
+        "statusVal": "'status: ' & msg.statusCode",
+        "statusType": "jsonata",
         "x": 750,
         "y": 340,
         "wires": []
@@ -991,7 +992,7 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "statusVal": "",
+        "statusVal": "payload",
         "statusType": "auto",
         "x": 540,
         "y": 280,
@@ -1093,11 +1094,11 @@
         "active": true,
         "tosidebar": true,
         "console": false,
-        "tostatus": false,
+        "tostatus": true,
         "complete": "true",
         "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
+        "statusVal": "'status: ' & msg.statusCode",
+        "statusType": "jsonata",
         "x": 820,
         "y": 540,
         "wires": []
@@ -1166,11 +1167,11 @@
         "active": true,
         "tosidebar": true,
         "console": false,
-        "tostatus": false,
+        "tostatus": true,
         "complete": "true",
         "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
+        "statusVal": "'status: ' & msg.statusCode",
+        "statusType": "jsonata",
         "x": 750,
         "y": 820,
         "wires": []
@@ -1319,6 +1320,97 @@
         "info": "",
         "x": 680,
         "y": 660,
+        "wires": []
+    },
+    {
+        "id": "fd550fcf054d0df1",
+        "type": "debug",
+        "z": "c41b7248cee84bf3",
+        "name": "debug 89",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "5685f8736b810234",
+        "type": "comment",
+        "z": "c41b7248cee84bf3",
+        "name": "does not work",
+        "info": "",
+        "x": 1010,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "61a0fd5022769401",
+        "type": "comment",
+        "z": "c41b7248cee84bf3",
+        "name": "does not work",
+        "info": "",
+        "x": 1010,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "0e7f532481377f0a",
+        "type": "comment",
+        "z": "c41b7248cee84bf3",
+        "name": "does not work",
+        "info": "",
+        "x": 1010,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "b9cf21e32692ba9f",
+        "type": "comment",
+        "z": "c41b7248cee84bf3",
+        "g": "ac0b1ae0b3d6d0d5",
+        "name": "always false, because GET does not work",
+        "info": "",
+        "x": 1140,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "d2761ddb666dd807",
+        "type": "comment",
+        "z": "c41b7248cee84bf3",
+        "g": "ac0b1ae0b3d6d0d5",
+        "name": "error code shows success, but data does not find its way to QL",
+        "info": "",
+        "x": 1100,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d5ed8f1c0db93461",
+        "type": "comment",
+        "z": "c41b7248cee84bf3",
+        "g": "db407cc6de5d87f9",
+        "name": "error code shows success, but data does not find its way to QL",
+        "info": "",
+        "x": 1080,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "300d380e5acaa002",
+        "type": "comment",
+        "z": "c41b7248cee84bf3",
+        "g": "db407cc6de5d87f9",
+        "name": "always false, because GET does not work",
+        "info": "",
+        "x": 1140,
+        "y": 700,
         "wires": []
     },
     {
